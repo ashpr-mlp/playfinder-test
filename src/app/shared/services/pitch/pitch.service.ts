@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Pitch, PaginatedResponse } from '../../models';
 import { environment } from 'src/environments/environment';
-import { ApiUtilsService } from '../api-utils/api-utils.service';
+import { ApiUtilsService, PaginationOptions } from '../api-utils/api-utils.service';
 
 export interface PitchFilter {
     sport: string;
@@ -22,8 +22,14 @@ export class PitchService {
 
     constructor(private http: HttpClient, private apiUtils: ApiUtilsService) {}
 
-    fetchAll(filters: Partial<PitchFilter>): Observable<PaginatedResponse<Pitch>> {
-        const params = this.apiUtils.buildFilterParams(filters);
+    fetchAll(options: PaginationOptions, filters?: Partial<PitchFilter>): Observable<PaginatedResponse<Pitch>> {
+        const paginationParams = this.apiUtils.buildPaginationParams(options);
+        const filterParams = this.apiUtils.buildFilterParams(filters);
+
+        const params = new HttpParams({fromObject: {
+            ...paginationParams,
+            ...filterParams
+        }});
 
         return this.http.get<PaginatedResponse<Pitch>>(`${environment.apiUrl}pitches`, {params});
     }

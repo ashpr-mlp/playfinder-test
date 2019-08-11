@@ -1,4 +1,5 @@
-import { ApiUtilsService, FilterParams } from './api-utils.service';
+import { ApiUtilsService, ParamMap } from './api-utils.service';
+import { HttpParams } from '@angular/common/http';
 
 describe('ApiUtilsService', () => {
 
@@ -25,10 +26,10 @@ describe('ApiUtilsService', () => {
 
 });
 
-function testFilterParamsInputOutput(input: FilterParams, output: string) {
+function testFilterParamsInputOutput(input: ParamMap, output: string) {
     const apiUtils = new ApiUtilsService();
 
-    const params = apiUtils.buildFilterParams(input);
+    const params = new HttpParams({fromObject: apiUtils.buildFilterParams(input)});
 
     expect(decodeURI(params.toString())).toEqual(output);
 }

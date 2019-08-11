@@ -1,19 +1,29 @@
 import { Injectable } from '@angular/core';
-import { HttpParams } from '@angular/common/http';
 
 @Injectable()
 export class ApiUtilsService {
 
-    buildFilterParams(filterParams: FilterParams): HttpParams {
-        let params = new HttpParams();
+    public buildFilterParams(filterParams: ParamMap): ParamMap {
+        const params: ParamMap = {};
 
         Object.keys(filterParams).forEach(key => {
-            params = params.set(`[filter]${key}`, filterParams[key]);
+            params[`[filter]${key}`] = filterParams[key];
         });
 
         return params;
     }
 
+    public buildPaginationParams(paginationOptions: PaginationOptions): ParamMap {
+        return {
+            number: (paginationOptions.number || 1).toString(),
+            size: (paginationOptions.size || 50).toString(),
+        };
+    }
+
 }
 
-export interface FilterParams {[key: string]: string; }
+export interface ParamMap {[key: string]: string; }
+export interface PaginationOptions {
+    number: number;
+    size: number;
+}
