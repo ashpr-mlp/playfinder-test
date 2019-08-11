@@ -1,25 +1,47 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { createTestComponentFactory, Spectator } from '@netbasal/spectator';
 
 import { PitchSearchInputComponent } from './pitch-search-input.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { tick, fakeAsync } from '@angular/core/testing';
 
 describe('PitchSearchInputComponent', () => {
-  let component: PitchSearchInputComponent;
-  let fixture: ComponentFixture<PitchSearchInputComponent>;
+  let host: Spectator<PitchSearchInputComponent>;
+  const createHost = createTestComponentFactory({
+    imports: [
+      ReactiveFormsModule
+    ],
+    component: PitchSearchInputComponent
+  });
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ PitchSearchInputComponent ]
-    })
-    .compileComponents();
-  }));
+  beforeEach(async () => {
+    host = createHost();
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(PitchSearchInputComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    await host.fixture.whenStable();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(host.component).toBeTruthy();
+  });
+
+  describe('ngOnChanges', () => {
+    describe('when filters input changes', () => {
+      const changes = {sport: 'foo', format: 'bar'};
+      let changedTo;
+
+      beforeEach(() => {
+        changedTo = undefined;
+
+        host.component.searchForm.valueChanges.subscribe(changedToValue => changedTo = changedToValue);
+        host.component.ngOnChanges({filters: {currentValue: changes}} as any);
+      });
+
+
+      it('should populate form with changes', () => {
+        expect(changedTo).toEqual(changes);
+
+        expect(host.queryLast('.pitch-search-input__sport-input')).toHaveValue('foo');
+        expect(host.queryLast('.pitch-search-input__format-input')).toHaveValue('bar');
+      });
+    });
   });
 });

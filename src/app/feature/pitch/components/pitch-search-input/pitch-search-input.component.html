@@ -1,1 +1,16 @@
-<p>pitch-search-input works!</p>
+<form class="card" [formGroup]="searchForm">
+    <div class="card-body">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend pitch-search-input__label-wrapper">
+                <span class="input-group-text pitch-search-input__label-label" id="pitch-search-sport-input-label">Sport</span>
+            </div>
+            <input type="text" class="form-control pitch-search-input__sport-input" formControlName="sport" aria-describedby="pitch-search-sport-input-label">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend pitch-search-input__label-wrapper">
+                <span class="input-group-text pitch-search-input__label-label" id="pitch-search-format-input-label">Format</span>
+            </div>
+            <input type="text" class="form-control pitch-search-input__format-input" formControlName="format" aria-describedby="pitch-search-format-input-label">
+        </div>
+    </div>
+</form>
