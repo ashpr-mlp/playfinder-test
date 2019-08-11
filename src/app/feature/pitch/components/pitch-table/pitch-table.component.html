@@ -1,0 +1,23 @@
+<table class="table table-striped" *ngIf="pitches !== undefined">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Sport</th>
+            <th scope="col">Format</th>
+        </tr>
+    </thead>
+    <tbody *ngIf="pitches && pitches.length > 0" class="pitch-table__results">
+        <tr *ngFor="let pitch of pitches" class="pitch-table__result">
+            <td class="pitch-table__result-name">{{pitch.attributes.name}}</td>
+            <td class="pitch-table__result-sport">{{pitch.attributes.sport}}</td>
+            <td class="pitch-table__result-format">{{pitch.attributes.format}}</td>
+        </tr>
+    </tbody>
+    <tbody *ngIf="!pitches" class="pitch-table__noresults">
+        <tr>
+            <td colspan="2" class="p-2 text-center">
+                No pitches
+            </td>
+        </tr>
+    </tbody>
+</table>
