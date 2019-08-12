@@ -16,7 +16,9 @@ Components are tested.
 
 Tested services where time allowed.
 
-All observable driven.
+All observable driven (All a one way flow).
+
+All pages are driven via URL params. They can be refreshed and will give the same expected result.
 
 Storybook stories (I was going to set up VRTs but no time)
 
