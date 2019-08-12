@@ -4,6 +4,9 @@ import { pluck, map, switchMap, shareReplay, debounceTime, tap } from 'rxjs/oper
 import { combineLatest } from 'rxjs';
 import { PitchService, PitchFilter, Pitch } from 'src/app/shared';
 
+/**
+ * Maps URL Query param keys
+ */
 enum PitchSearchPageComponentParams {
   SportFliter = 'filters.sport',
   FormatFilter = 'filters.format',
@@ -58,6 +61,10 @@ export class PitchSearchPageComponent {
     private pitchService: PitchService
   ) {}
 
+  /**
+   * Updates the filters via the query params
+   * @param filters Filter object
+   */
   public setFilters(filters: PitchFilter) {
     this.router.navigate(['.'], {
       queryParams: {
@@ -67,9 +74,12 @@ export class PitchSearchPageComponent {
       },
       queryParamsHandling: 'merge'
     });
-
   }
 
+  /**
+   * Updates the page number via the query params
+   * @param pageNumber Page Number
+   */
   public setPage(pageNumber: number) {
     this.router.navigate(['.'], {
       queryParams: {
@@ -79,6 +89,10 @@ export class PitchSearchPageComponent {
     });
   }
 
+  /**
+   * Moves the view to the supplied pitch
+   * @param pitch Pitch object
+   */
   public goToPitch(pitch: Pitch) {
     this.router.navigate([`../pitch/${pitch.id}`], {relativeTo: this.route});
   }

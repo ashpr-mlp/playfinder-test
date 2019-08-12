@@ -4,6 +4,8 @@
 
 This is my (Ash Prosser) submission to the PlayFinder test.
 
+You can find it hosted here in all its glory: https://eager-jackson-e7fc24.netlify.com
+
 ## What did I do?
 
 I styled this like I would any enterprise scale application. A shared module for app-side content then the rest are feature driven.
@@ -34,9 +36,13 @@ Page tests.
 
 Not much UI fancy-ness.
 
+README for components
+
 ## If I had more time?
 
 E2E and page tests. I'm not great at design so I won't pretend I can fix that!
+
+Component documentation.
 
 ## Build
 
