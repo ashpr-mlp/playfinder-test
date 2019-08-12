@@ -20,7 +20,11 @@ Storybook stories (I was going to set up VRTs but no time)
 
 Deployed site to Netlify.
 
+All commits follow conventional commits.
+
 ## What didn't I do?
+
+Forgot to change the app suffix before it was too late so I stuck with app. Sorry about that.
 
 No state management. It would have added a lot of time and we would have had many missing features. Had to compromise here.
 
@@ -29,6 +33,10 @@ E2E tests.
 Page tests.
 
 Not much UI fancy-ness.
+
+## If I had more time?
+
+E2E and page tests. I'm not great at design so I won't pretend I can fix that!
 
 ## Build
 
