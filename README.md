@@ -1,14 +1,34 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/2c41a360-552c-4f33-a5ea-59210aa825f9/deploy-status)](https://app.netlify.com/sites/eager-jackson-e7fc24/deploys)
+
 # MyLocalPitchTest
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.0.
+This is my (Ash Prosser) submission to the PlayFinder test.
 
-## Development server
+## What did I do?
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+I styled this like I would any enterprise scale application. A shared module for app-side content then the rest are feature driven.
 
-## Code scaffolding
+Components are split up into dumb components and smart components (pages).
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Components are tested.
+
+Tested services where time allowed.
+
+All observable driven.
+
+Storybook stories (I was going to set up VRTs but no time)
+
+Deployed site to Netlify.
+
+## What didn't I do?
+
+No state management. It would have added a lot of time and we would have had many missing features. Had to compromise here.
+
+E2E tests. 
+
+Page tests.
+
+Not much UI fancy-ness.
 
 ## Build
 
@@ -17,11 +37,3 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
