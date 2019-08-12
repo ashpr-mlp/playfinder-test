@@ -1,4 +1,5 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/2c41a360-552c-4f33-a5ea-59210aa825f9/deploy-status)](https://app.netlify.com/sites/eager-jackson-e7fc24/deploys)
+[![Build Status](https://travis-ci.org/ashpr-mlp/playfinder-test.svg?branch=master)](https://travis-ci.org/ashpr-mlp/playfinder-test)
 
 # MyLocalPitchTest
 
