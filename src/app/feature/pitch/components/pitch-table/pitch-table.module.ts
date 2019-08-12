@@ -11,6 +11,9 @@ import { PitchTableComponent } from './pitch-table.component';
   imports: [
     CommonModule,
     NgbTypeaheadModule
+  ],
+  exports: [
+    PitchTableComponent
   ]
 })
 export class PitchTableModule { }

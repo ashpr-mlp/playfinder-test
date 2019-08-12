@@ -2,7 +2,6 @@ import { createTestComponentFactory, Spectator } from '@netbasal/spectator';
 
 import { PitchSearchInputComponent } from './pitch-search-input.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { tick, fakeAsync } from '@angular/core/testing';
 
 describe('PitchSearchInputComponent', () => {
   let host: Spectator<PitchSearchInputComponent>;

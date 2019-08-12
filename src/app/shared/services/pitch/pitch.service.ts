@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Pitch, PaginatedResponse } from '../../models';
 import { environment } from 'src/environments/environment';
-import { ApiUtilsService, PaginationOptions } from '../api-utils/api-utils.service';
+import { ApiUtilsService, PaginationOptions, CustomHttpUrlEncodingCodec } from '../api-utils/api-utils.service';
 
 export interface PitchFilter {
     sport: string;
@@ -29,12 +29,13 @@ export class PitchService {
         const params = new HttpParams({fromObject: {
             ...paginationParams,
             ...filterParams
-        }});
+        },
+        encoder: new CustomHttpUrlEncodingCodec()});
 
         return this.http.get<PaginatedResponse<Pitch>>(`${environment.apiUrl}pitches`, {params});
     }
 
-    fetchOne(pitchId: string): Observable<Pitch> {
+    fetchOne(pitchId: number): Observable<Pitch> {
         return this.http.get<{data: Pitch}>(`${environment.apiUrl}pitches/${pitchId}`)
             .pipe(map(response => response.data));
     }

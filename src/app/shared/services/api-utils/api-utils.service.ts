@@ -1,13 +1,18 @@
 import { Injectable } from '@angular/core';
+import { HttpUrlEncodingCodec } from '@angular/common/http';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class ApiUtilsService {
 
     public buildFilterParams(filterParams: ParamMap): ParamMap {
         const params: ParamMap = {};
 
         Object.keys(filterParams).forEach(key => {
-            params[`[filter]${key}`] = filterParams[key];
+            if (filterParams[key]) {
+                params[`filter[${key}]`] = filterParams[key];
+            }
         });
 
         return params;
@@ -15,11 +20,19 @@ export class ApiUtilsService {
 
     public buildPaginationParams(paginationOptions: PaginationOptions): ParamMap {
         return {
-            number: (paginationOptions.number || 1).toString(),
-            size: (paginationOptions.size || 50).toString(),
+            'page[number]': (paginationOptions.number || 1).toString(),
+            'page[size]': (paginationOptions.size || 10).toString(),
         };
     }
 
+}
+
+export class CustomHttpUrlEncodingCodec extends HttpUrlEncodingCodec {
+    encodeKey(k: string): string {
+        return super.encodeKey(k)
+            .replace(new RegExp('%5B', 'g'), '[')
+            .replace(new RegExp('%5D', 'g'), ']');
+    }
 }
 
 export interface ParamMap {[key: string]: string; }
@@ -27,3 +40,4 @@ export interface PaginationOptions {
     number: number;
     size: number;
 }
+

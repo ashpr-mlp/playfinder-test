@@ -1,13 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PitchSearchComponent } from './pitch-search.component';
+import { PitchSearchPageComponent } from './pitch-search.component';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { PitchTableModule } from '../../components/pitch-table/pitch-table.module';
+import { PitchSearchInputModule } from '../../components/pitch-search-input/pitch-search-input.module';
 
 
 
 @NgModule({
-  declarations: [PitchSearchComponent],
+  declarations: [PitchSearchPageComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    NgbPaginationModule,
+    PitchTableModule,
+    PitchSearchInputModule
+  ],
+  exports: [
+    PitchSearchPageComponent
   ]
 })
-export class PitchSearchModule { }
+export class PitchSearchPageModule { }

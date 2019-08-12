@@ -8,6 +8,9 @@ import { PitchDetailsComponent } from './pitch-details.component';
   declarations: [PitchDetailsComponent],
   imports: [
     CommonModule
+  ],
+  exports: [
+    PitchDetailsComponent
   ]
 })
 export class PitchDetailsModule { }

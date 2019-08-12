@@ -1,1 +1,24 @@
-<p>pitch-search works!</p>
+<div class="container">
+    <app-pitch-search-input
+        [filters]="filters$ | async"
+        (filtersChanged)="setFilters($event)"></app-pitch-search-input>
+    <ngb-pagination
+        *ngIf="(pitches$ | async)?.meta.total_items as total"
+        maxSize="10"
+        [disabled]="loading"
+        [page]="pageNumber$ | async"
+        [pageSize]="pageSize$ | async"
+        [collectionSize]="total"
+        (pageChange)="setPage($event)"></ngb-pagination>
+    <div *ngIf="loading; else results" class="d-flex flex-row align-items-center justify-content-center p-4">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <ng-template #results>
+        <app-pitch-table
+            [pitches]="(pitches$ | async)?.data"
+            (selectPitch)="goToPitch($event)"
+        ></app-pitch-table>
+    </ng-template>
+</div>

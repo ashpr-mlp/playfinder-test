@@ -5,14 +5,14 @@ describe('ApiUtilsService', () => {
 
     it('should return a query string for a single filter key', () => {
         const input = { foo: 'bar' };
-        const urlOutput = '[filter]foo=bar';
+        const urlOutput = 'filter[foo]=bar';
 
         testFilterParamsInputOutput(input, urlOutput);
     });
 
     it('should return a query string for a multiple filter keys', () => {
         const input = { one: '1', two: '2' };
-        const urlOutput = '[filter]one=1&[filter]two=2';
+        const urlOutput = 'filter[one]=1&filter[two]=2';
 
         testFilterParamsInputOutput(input, urlOutput);
     });
